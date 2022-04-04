@@ -8,12 +8,23 @@ public class VerySeverePenaltyFee extends PenaltyFee {
 
   public static String DRIVING_UNDER_INFLUENCE = "EXCESS_ALCOOL";
 
-  public VerySeverePenaltyFee(Date data, String razao, String local) {
+  public VerySeverePenaltyFee(Date data, String razao, String local) throws InvalidPenaltyFeeReasonException{
+    super(data, razao, local);
+    if(!(razao.equals(SPEEDING) || razao.equals(DRIVING_UNDER_INFLUENCE))){
+      throw new InvalidPenaltyFeeReasonException("Razao Invalida");
+    }
+  }
+
+  public VerySeverePenaltyFee(Date data, String razao, String local, Driver condutor, Vehicle veiculo) throws InvalidPenaltyFeeReasonException {
+    super(data, razao, local, condutor, veiculo);
+    if (!(razao.equals(SPEEDING) || razao.equals(DRIVING_UNDER_INFLUENCE))) {
+      throw new InvalidPenaltyFeeReasonException("Razao invalida");
+    }
   }
 
   @Override
   public void value() {
-    
+
   }
 
   @Override
